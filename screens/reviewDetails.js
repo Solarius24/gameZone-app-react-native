@@ -14,6 +14,7 @@ export default function ReviewDetails({route}) {
 
 const styles = StyleSheet.create({
     container:{
-        padding:24
+        padding:24,
+        
     }
 })
