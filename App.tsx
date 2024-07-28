@@ -1,20 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 
+import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
+import { useEffect} from "react";
+import { createStackNavigator } from "@react-navigation/stack";
+import ReviewDetails from "./screens/reviewDetails";
+import Home from "./screens/home";
+import About from "./screens/about";
+import { NavigationContainer } from "@react-navigation/native";
+
+SplashScreen.preventAutoHideAsync();
+
+const Stack = createStackNavigator();
 export default function App() {
+  const [loaded, error] = useFonts({
+    "nunito-regular": require("./assets/fonts/Nunito-Regular.ttf"),
+    "nunito-bald": require("./assets/fonts/Nunito-Bold.ttf"),
+  });
+
+  useEffect(() => {
+    if (loaded || error) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded, error]);
+
+  if (!loaded && !error) {
+    return null;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="ReviewDetails" component={ReviewDetails} />
+        <Stack.Screen name="About" component={About} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
