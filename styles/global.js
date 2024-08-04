@@ -18,6 +18,7 @@ export const globalStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ddd',
     padding: 10,
+    marginBottom:40,
     fontSize: 18,
     borderRadius: 6,
   },

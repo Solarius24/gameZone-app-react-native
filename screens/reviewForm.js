@@ -38,7 +38,7 @@ export default function ReviewForm(props) {
         )}
         <Controller
           control={control}
-          multiline
+          multiline minHeight={60}
           name="body"
           render={({ field: { onChange, value, onBlur } }) => (
             <TextInput
