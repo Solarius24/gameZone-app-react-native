@@ -3,6 +3,7 @@ import { View, Text, FlatList, Pressable,Modal ,StyleSheet} from "react-native";
 import { globalStyles } from "../styles/global";
 import Card from "../components/Card";
 import { MaterialIcons } from '@expo/vector-icons';
+import ReviewForm from "./reviewForm";
 export default function Home({ navigation }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [reviews, setReviews] = useState([
@@ -26,6 +27,13 @@ export default function Home({ navigation }) {
     },
   ]);
 
+
+  const addReview = (review) => {
+review.key = Math.random().toString()
+setReviews((currentReview)=>{ return[review,...currentReview]})
+setModalOpen(false)
+  }
+
   return (
     <View style={globalStyles.container}>
       <Modal visible={modalOpen} animationType="slide">
@@ -36,7 +44,7 @@ export default function Home({ navigation }) {
             style={{ ...styles.modalToggle, ...styles.modalClose }}
             onPress={() => setModalOpen(false)}
           />
-          <Text>Hello from the modal :)</Text>
+  <ReviewForm addReview={addReview}/>
         </View>
       </Modal>
 

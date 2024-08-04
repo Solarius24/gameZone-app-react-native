@@ -9,6 +9,7 @@ import About from "./screens/about";
 import { NavigationContainer } from "@react-navigation/native";
 import Header from "./components/Header";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import ReviewForm from "./screens/reviewForm";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -31,6 +32,7 @@ export default function App() {
             headerTitle: () => (
               <Header title="GameZone" navigation={undefined} />
             ),
+          
           }}
         />
         <Drawer.Screen
